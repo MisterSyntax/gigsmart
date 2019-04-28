@@ -61,8 +61,8 @@ module.exports = plop => {
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.less',
-                            templateFile: 'plop-templates/ComponentLess.hbs'
+                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
                         break;
@@ -83,8 +83,8 @@ module.exports = plop => {
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.less',
-                            templateFile: 'plop-templates/ComponentLess.hbs'
+                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            templateFile: 'plop-templates/ComponentCss.hbs'
                         });
                         break;
                     }
@@ -104,8 +104,8 @@ module.exports = plop => {
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.less',
-                            templateFile: 'plop-templates/ComponentLess.hbs'
+                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
                         break;
@@ -126,8 +126,8 @@ module.exports = plop => {
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.less',
-                            templateFile: 'plop-templates/ComponentLess.hbs'
+                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
                         break;
