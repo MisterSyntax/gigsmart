@@ -1,9 +1,13 @@
 {
-  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"],
-  "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "indent": ["error", 4],
-    "react/jsx-indent": [true, 4]
-  }
+    "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
+    "plugins": ["jsx-a11y"],
+    "rules": {
+        "import/no-named-as-default": [false],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "indent": ["error", 4],
+        "react/jsx-indent": [true, 4],
+        "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+        "react/jsx-one-expression-per-line": [false],
+        "react/require-default-props": [false]
+    }
 }
