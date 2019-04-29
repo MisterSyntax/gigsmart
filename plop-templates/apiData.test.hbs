@@ -1,7 +1,36 @@
+import questionsReducer from './apiData';
 import {
-    Reducer
-} from './apiData';
+    LOAD,
+    LOAD_FAILURE,
+    LOAD_SUCCESS,
+} from './actions';
 
 describe('Api Data', () => {
-    it('Reducer');
+    it('questionsReducer handles LOAD', () => {
+        expect(questionsReducer({}, {
+            type: LOAD,
+        })).toEqual({
+            loading: true,
+            loaded: false,
+        });
+    });
+    it('questionsReducer handles LOAD_FAILURE', () => {
+        expect(questionsReducer({}, {
+            type: LOAD_FAILURE,
+        })).toEqual({
+            loading: false,
+            loaded: false,
+            error: true,
+        });
+    });
+    it('questionsReducer handles LOAD_SUCCESS', () => {
+        expect(questionsReducer({}, {
+            type: LOAD_SUCCESS,
+            data: 'test',
+        })).toEqual({
+            loading: true,
+            loaded: false,
+            data: 'test',
+        });
+    });
 });

@@ -8,7 +8,7 @@ import {
 // Helpers
 
 // Reducers
-export function Reducer(state = {}, action = {}) {
+export default function Reducer(state = {}, action = {}) {
     switch (action.type) {
         case LOAD: {
             return {
@@ -30,7 +30,7 @@ export function Reducer(state = {}, action = {}) {
         case LOAD_SUCCESS: {
             return {
                 ...state,
-                data: deep(action, 'result'),
+                data: deep(action, 'data'),
                 loading: true,
                 loaded: false,
             };
