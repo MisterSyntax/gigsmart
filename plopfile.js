@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const promptDirectory = require('inquirer-directory');
 
 module.exports = plop => {
@@ -36,7 +38,7 @@ module.exports = plop => {
                 }
             },
             {
-                basePath: './src/App',
+                basePath: './src',
                 type: 'directory',
                 name: 'directory',
                 message: 'Where shall we put it?'
@@ -49,19 +51,19 @@ module.exports = plop => {
                     case 'Classy Component': {
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.js',
+                            path: 'src/{{directory}}/{{componentName}}.js',
                             templateFile: 'plop-templates/ClassyComponent.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.test.js',
+                            path: 'src/{{directory}}/{{componentName}}.test.js',
                             templateFile: 'plop-templates/ComponentTest.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            path: 'src/{{directory}}/{{componentName}}.module.css',
                             templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
@@ -71,19 +73,19 @@ module.exports = plop => {
                     case 'Functional Component': {
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.js',
+                            path: 'src/{{directory}}/{{componentName}}.js',
                             templateFile: 'plop-templates/FunctionalComponent.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.test.js',
+                            path: 'src/{{directory}}/{{componentName}}.test.js',
                             templateFile: 'plop-templates/ComponentTest.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            path: 'src/{{directory}}/{{componentName}}.module.css',
                             templateFile: 'plop-templates/ComponentCss.hbs'
                         });
                         break;
@@ -92,19 +94,19 @@ module.exports = plop => {
                     case 'Functional Component (connected)': {
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.js',
+                            path: 'src/{{directory}}/{{componentName}}.js',
                             templateFile: 'plop-templates/FunctionalComponentConnected.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.test.js',
+                            path: 'src/{{directory}}/{{componentName}}.test.js',
                             templateFile: 'plop-templates/ComponentTest.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            path: 'src/{{directory}}/{{componentName}}.module.css',
                             templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
@@ -114,19 +116,19 @@ module.exports = plop => {
                     case 'Classy Component (connected)': {
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.js',
+                            path: 'src/{{directory}}/{{componentName}}.js',
                             templateFile: 'plop-templates/ClassyComponentConnected.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.test.js',
+                            path: 'src/{{directory}}/{{componentName}}.test.js',
                             templateFile: 'plop-templates/ComponentTest.hbs'
                         });
 
                         actions.push({
                             type: 'add',
-                            path: 'src/App/{{directory}}/{{componentName}}.module.css',
+                            path: 'src/{{directory}}/{{componentName}}.module.css',
                             templateFile: 'plop-templates/ComponentCss.hbs'
                         });
 
@@ -142,12 +144,12 @@ module.exports = plop => {
             return [
                 {
                     type: 'add',
-                    path: 'src/App/{{directory}}/{{fileType}}.js',
+                    path: 'src/{{directory}}/{{fileType}}.js',
                     templateFile: 'plop-templates/{{fileType}}.hbs'
                 },
                 {
                     type: 'add',
-                    path: 'src/App/{{directory}}/{{fileType}}.test.js',
+                    path: 'src/{{directory}}/{{fileType}}.test.js',
                     templateFile: 'plop-templates/{{fileType}}.test.hbs'
                 }
             ];
