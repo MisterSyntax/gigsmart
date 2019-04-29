@@ -8,5 +8,8 @@
             "difficulty": "hard",
             "type": "boolean"
         }
+    },
+    "featureFlags": {
+        "difficultySelection": true
     }
 }
