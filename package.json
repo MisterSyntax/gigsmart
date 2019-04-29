@@ -29,6 +29,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
     "plop": "^2.3.0"
   }
 }
