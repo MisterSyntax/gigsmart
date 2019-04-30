@@ -1,47 +1,43 @@
+import homeReducer, { getShouldShowHome } from './viewStates';
 import {
-    getMyComponentThing,
-    getMyComponentViewState,
-    myComponentReducer,
-} from './viewStates';
-import {
-    MY_EVENT_NAME
-} from './actions';
+    QUESTIONS_LOAD_SUCCESS,
+} from '../../store/apiData/questions/actions';
 
 // Reducer Tests
 describe('MyComponent ViewStates', () => {
-    it('MY_EVENT_NAME sets thing to true', () => {
+    it('Initializes to shouldSHowHome: true', () => {
+        expect(homeReducer(undefined, {}))
+            .toMatchObject({
+                shouldShowHome: true,
+            });
+        expect(homeReducer({ shouldShowHome: false }, {}))
+            .toMatchObject({
+                shouldShowHome: false,
+            });
+    });
+    it('QUESTIONS_LOAD_SUCCESS sets shouldShowHome to false', () => {
         const action = {
-            type: MY_EVENT_NAME
+            type: QUESTIONS_LOAD_SUCCESS,
         };
 
-        expect(myComponentReducer({}, action))
+        expect(homeReducer({}, action))
             .toMatchObject({
-                thing: true
-        });
+                shouldShowHome: false,
+            });
     });
 });
 
 // Selector Tests
-describe('MyComponent selectors', () => {
-    it('getMyComponentViewState gets the viewState for myComponent', () => {
+describe('Home selectors', () => {
+    it('getShouldShowHome gets the viewState for Home', () => {
         const state = {
             viewStates: {
-                myComponent: 'anObject'
-            }
+                Home: {
+                    shouldShowHome: true,
+                },
+            },
         };
 
-        expect(getMyComponentViewState(state)).toEqual('anObject');
-    });
-
-    it('getMyComponentThing gets the thing for myComponent', () => {
-        const state = {
-            viewStates: {
-                myComponent: {
-                    thing: true
-                }
-            }
-        };
-
-        expect(getMyComponentThing(state)).toEqual(true);
+        expect(getShouldShowHome(state)).toEqual(true);
     });
 });

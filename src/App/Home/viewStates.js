@@ -2,18 +2,18 @@
 import deep from 'deep-get-set';
 // import { getViewStates } from '../viewStates'; // TODO: Update this path!
 import {
-    QUESTIONS_LOAD_SUCCESS
+    QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
 
 // Helpers
 
 // Reducers
-export default function myComponentReducer(state = { shouldShowHome: true }, action = {}) {
+export default function homeReducer(state = { shouldShowHome: true }, action = {}) {
     switch (action.type) {
     case QUESTIONS_LOAD_SUCCESS:
         return {
             ...state,
-            thing: true,
+            shouldShowHome: false,
         };
 
     default:
@@ -23,13 +23,4 @@ export default function myComponentReducer(state = { shouldShowHome: true }, act
 
 
 // Selectors
-
-// export const getMyComponentViewState = createSelector(
-//     getViewStates,
-//     viewStates => deep(viewStates, 'myComponent') || {}
-// );
-//
-// export const getMyComponentThing = createSelector(
-//     getMyComponentViewState,
-//     myComponent => deep(myComponent, 'thing') || false,
-// );
+export const getShouldShowHome = state => deep(state, 'viewStates.Home.shouldShowHome');
