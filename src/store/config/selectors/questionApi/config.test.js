@@ -58,6 +58,6 @@ describe('question Api Selectors', () => {
         expect(getQuestionsApiSettingsType(state)).toEqual('boolean');
     });
     it('getQuestionsApirUrlWithParams combines the values to one url', () => {
-        expect(getQuestionsApirUrlWithParams(state).toEqual('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'));
+        expect(getQuestionsApirUrlWithParams(state)).toEqual('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean');
     });
 });
