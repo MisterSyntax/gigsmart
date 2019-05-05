@@ -1,6 +1,5 @@
 // import { createSelector } from 'reselect';
 import deep from 'deep-get-set';
-// import { getApiData } from '../selectors'; // Update this path!
 import {
     QUESTIONS_LOAD,
     QUESTIONS_LOAD_FAILURE,
@@ -45,3 +44,8 @@ export default function questionsReducer(state = {}, action = {}) {
 
 
 // Selectors
+export const getAllQuestionsData = state => deep(state, 'apiData.questions.data') || [];
+export const getQuestionData = (state, index) => getAllQuestionsData(state)[index] || {};
+export const getQuestionCategory = (state, index) => getQuestionData(state, index).category || '';
+export const getQuestionText = (state, index) => getQuestionData(state, index).question || '';
+export const getQuestionAnswer = (state, index) => getQuestionData(state, index).correct_answer || '';
