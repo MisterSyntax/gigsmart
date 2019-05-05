@@ -7,19 +7,29 @@ import styles from './BeginButton.module.css';
 // -- components -- //
 
 // -- actions -- //
+import { fetchQuestions } from '../../../store/apiData/questions/actions';
 
 // -- selectors -- //
+import {
+    getQuestionsApirUrlWithParams,
+} from '../../../store/config/selectors/questionApi/config';
 
 export const BeginButton = ({
-    beginQuiz,
+    apiUrl,
+    fetchQuestions,
 }) => (
-    <button className={styles['begin-button']} onClick={beginQuiz} type="button">
+    <button
+        className={styles['begin-button']}
+        onClick={() => fetchQuestions(apiUrl)}
+        type="button"
+    >
         Begin the Quiz!
     </button>
 );
 
 BeginButton.propTypes = {
-    beginQuiz: PropTypes.func,
+    apiUrl: PropTypes.string,
+    fetchQuestions: PropTypes.func,
 };
 
 BeginButton.defaultProps = {
@@ -28,11 +38,11 @@ BeginButton.defaultProps = {
 
 /* istanbul ignore next */
 const mapStateToProps = state => ({
-    state,
+    apiUrl: getQuestionsApirUrlWithParams(state),
 });
 
 const mapDispatchToProps = {
-
+    fetchQuestions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeginButton);
