@@ -1,0 +1,15 @@
+{
+    "apis": {
+        "quizApi": {
+            "url": "https://opentdb.com/api.php?",
+            "settings": {
+                "amount": "10",
+                "difficulty": "hard",
+                "type": "boolean"
+            }
+        }
+    },
+    "featureFlags": {
+        "difficultySelection": true
+    }
+}

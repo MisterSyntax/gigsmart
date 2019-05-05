@@ -8,7 +8,7 @@ import {
 // Helpers
 
 // Reducers
-export function myComponentReducer(state = {}, action = {}) {
+export default function myComponentReducer(state = {}, action = {}) {
     switch (action.type) {
         case MY_EVENT_NAME:
             return {
