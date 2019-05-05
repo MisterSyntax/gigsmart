@@ -18,7 +18,7 @@ describe('requestQuestions', () => {
 
 describe('receiveQuestions', () => {
     it('dispatches QUESTIONS_LOAD', () => {
-        expect(receiveQuestions({ response: 'I am a data' })).toEqual({
+        expect(receiveQuestions({ results: 'I am a data' })).toEqual({
             type: QUESTIONS_LOAD_SUCCESS,
             data: 'I am a data',
         });
