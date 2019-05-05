@@ -1,12 +1,12 @@
 {
     "apis": {
-        "quizApi": "https://opentdb.com/api.php?"
-    },
-    "quizApi": {
-        "defaultSettings": {
-            "amount": "10",
-            "difficulty": "hard",
-            "type": "boolean"
+        "quizApi": {
+            "url": "https://opentdb.com/api.php?",
+            "settings": {
+                "amount": "10",
+                "difficulty": "hard",
+                "type": "boolean"
+            }
         }
     },
     "featureFlags": {
