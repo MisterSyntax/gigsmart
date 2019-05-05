@@ -10,7 +10,7 @@ export const requestQuestions = () => ({
 
 export const receiveQuestions = data => ({
     type: QUESTIONS_LOAD_SUCCESS,
-    data: data.response,
+    data: data.results,
 });
 
 export const failToReceiveQuestions = error => ({
