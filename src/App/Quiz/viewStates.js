@@ -13,6 +13,7 @@ export default function quizReducer(state = { shouldShowQuiz: false }, action = 
     case QUESTIONS_LOAD_SUCCESS:
         return {
             ...state,
+            currentQuestionIndex: 0,
             shouldShowQuiz: true,
         };
 
@@ -24,3 +25,5 @@ export default function quizReducer(state = { shouldShowQuiz: false }, action = 
 
 // Selectors
 export const getShouldShowQuiz = state => deep(state, 'viewStates.Quiz.shouldShowQuiz') || false;
+
+export const getCurrentQuestionIndex = state => deep(state, 'viewStates.Quiz.currentQuestionIndex') || 0;

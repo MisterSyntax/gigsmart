@@ -1,4 +1,5 @@
 import quizReducer, {
+    getCurrentQuestionIndex,
     getShouldShowQuiz,
 } from './viewStates';
 import {
@@ -8,7 +9,7 @@ import {
 // Reducer Tests
 describe('MyComponent ViewStates', () => {
     it('Initializes to shouldShowQuizowHome: false', () => {
-        expect(quizReducer(undefined, {}))
+        expect(quizReducer())
             .toMatchObject({
                 shouldShowQuiz: false,
             });
@@ -25,7 +26,11 @@ describe('MyComponent ViewStates', () => {
         expect(quizReducer({}, action))
             .toMatchObject({
                 shouldShowQuiz: true,
+                currentQuestionIndex: 0,
             });
+
+        expect(quizReducer({}, {}))
+            .toMatchObject({});
     });
 });
 
@@ -36,10 +41,14 @@ describe('Home selectors', () => {
             viewStates: {
                 Quiz: {
                     shouldShowQuiz: true,
+                    currentQuestionIndex: 1,
                 },
             },
         };
 
         expect(getShouldShowQuiz(state)).toEqual(true);
+        expect(getShouldShowQuiz({})).toEqual(false);
+        expect(getCurrentQuestionIndex(state)).toEqual(1);
+        expect(getCurrentQuestionIndex({})).toEqual(0);
     });
 });
