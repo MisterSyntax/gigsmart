@@ -103,5 +103,41 @@ describe('question api data selectors', () => {
     it('getQuestionText gets the text for the question at index i', () => {
         expect(getQuestionText(state, 2)).toEqual('quex');
         expect(getQuestionText({})).toEqual('');
+        expect(getQuestionText({}, 2)).toEqual('');
+    });
+});
+
+describe('current question selectors', () => {
+    const state = {
+        apiData: {
+            questions: {
+                data: [
+                    {},
+                    {},
+                    {
+                        category: 'cat',
+                        correct_answer: 'ans',
+                        question: 'quex',
+                    },
+                ],
+            },
+        },
+        viewStates: {
+            Quiz: {
+                currentQuestionIndex: 2,
+            },
+        },
+    };
+    it('getCurrentQuestionAnswer gets the answer for the current Question', () => {
+        expect(getCurrentQuestionAnswer(state)).toEqual('ans');
+        expect(getCurrentQuestionAnswer({})).toEqual('');
+    });
+    it('getCurrentQuestionAnswer gets the answer for the current Question', () => {
+        expect(getCurrentQuestionCategory(state)).toEqual('cat');
+        expect(getCurrentQuestionCategory({})).toEqual('');
+    });
+    it('getCurrentQuestionAnswer gets the answer for the current Question', () => {
+        expect(getCurrentQuestionText(state)).toEqual('quex');
+        expect(getCurrentQuestionText({})).toEqual('');
     });
 });
