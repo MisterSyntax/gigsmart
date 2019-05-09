@@ -1,9 +1,14 @@
 import questionsReducer, {
     getAllQuestionsData,
+    getCurrentQuestionAnswer,
+    getCurrentQuestionCategory,
+    getCurrentQuestionData,
+    getCurrentQuestionText,
     getQuestionAnswer,
     getQuestionCategory,
     getQuestionData,
     getQuestionText,
+    getTotalQuestions,
 } from './apiData';
 import {
     QUESTIONS_LOAD,
@@ -12,6 +17,9 @@ import {
 } from './actions';
 
 describe('Api Data', () => {
+    it('handles default with no params state', () => {
+        expect(questionsReducer()).toEqual({});
+    });
     it('questionsReducer handles QUESTIONS_LOAD', () => {
         expect(questionsReducer({}, {
             type: QUESTIONS_LOAD,
@@ -63,6 +71,11 @@ describe('question api data selectors', () => {
     });
     it('getQuestionData - gets the data at index X', () => {
         const state = {
+            viewStates: {
+                Quiz: {
+                    currentQuestionIndex: 2,
+                },
+            },
             apiData: {
                 questions: {
                     data: [
@@ -73,8 +86,12 @@ describe('question api data selectors', () => {
                 },
             },
         };
+        expect(getTotalQuestions(state)).toEqual(3);
+        expect(getTotalQuestions({})).toEqual(0);
         expect(getQuestionData(state, 2)).toEqual('dataFor3');
         expect(getQuestionData({}, 2)).toEqual({});
+        expect(getCurrentQuestionData(state)).toEqual('dataFor3');
+        expect(getCurrentQuestionData({})).toEqual({});
     });
 
     const state = {
@@ -102,7 +119,6 @@ describe('question api data selectors', () => {
     });
     it('getQuestionText gets the text for the question at index i', () => {
         expect(getQuestionText(state, 2)).toEqual('quex');
-        expect(getQuestionText({})).toEqual('');
         expect(getQuestionText({}, 2)).toEqual('');
     });
 });
