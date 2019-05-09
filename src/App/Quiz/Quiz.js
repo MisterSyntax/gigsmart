@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import styles from './Quiz.module.css';
 
 // -- components -- //
-
+import Category from './Category/Category';
+import Question from './Question/Question';
+import QuestionCount from './QuestionCount/QuestionCount';
 // -- actions -- //
 
 // -- selectors -- //
@@ -20,7 +22,9 @@ export const Quiz = ({
 
     return (
         <div className={styles.quiz}>
-            Quiz
+            <Category />
+            <Question />
+            <QuestionCount />
         </div>
     );
 };
