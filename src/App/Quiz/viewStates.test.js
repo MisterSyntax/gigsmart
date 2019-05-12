@@ -1,10 +1,14 @@
 import quizReducer, {
     getCurrentQuestionIndex,
+    getQuizAnswers,
     getShouldShowQuiz,
 } from './viewStates';
 import {
     QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
+import {
+    QUIZ_SUBMIT_ANSWER,
+} from './actions';
 
 // Reducer Tests
 describe('MyComponent ViewStates', () => {
@@ -29,6 +33,25 @@ describe('MyComponent ViewStates', () => {
                 currentQuestionIndex: 0,
             });
 
+        expect(quizReducer(undefined, undefined))
+            .toMatchObject({});
+    });
+    it('QUIZ_SUBMIT_ANSWER adds the current', () => {
+        const action = {
+            type: QUIZ_SUBMIT_ANSWER,
+            answer: false,
+        };
+
+        expect(quizReducer(undefined, action))
+            .toMatchObject({
+                answers: [false],
+            });
+
+        expect(quizReducer({ answers: [true, false] }, action))
+            .toMatchObject({
+                answers: [true, false, false],
+            });
+
         expect(quizReducer({}, {}))
             .toMatchObject({});
     });
@@ -40,8 +63,9 @@ describe('Home selectors', () => {
         const state = {
             viewStates: {
                 Quiz: {
-                    shouldShowQuiz: true,
+                    answers: 'answers',
                     currentQuestionIndex: 1,
+                    shouldShowQuiz: true,
                 },
             },
         };
@@ -50,5 +74,7 @@ describe('Home selectors', () => {
         expect(getShouldShowQuiz({})).toEqual(false);
         expect(getCurrentQuestionIndex(state)).toEqual(1);
         expect(getCurrentQuestionIndex({})).toEqual(0);
+        expect(getQuizAnswers(state)).toEqual('answers');
+        expect(getQuizAnswers({})).toEqual([]);
     });
 });

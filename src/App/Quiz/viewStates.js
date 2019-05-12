@@ -4,17 +4,32 @@ import deep from 'deep-get-set';
 import {
     QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
+import {
+    QUIZ_SUBMIT_ANSWER,
+} from './actions';
 
 // Helpers
 
 // Reducers
-export default function quizReducer(state = { shouldShowQuiz: false }, action = {}) {
+const defaultState = {
+    answers: [],
+    currentQuestionIndex: 0,
+    shouldShowQuiz: false,
+};
+
+export default function quizReducer(state = defaultState, action = {}) {
     switch (action.type) {
     case QUESTIONS_LOAD_SUCCESS:
         return {
             ...state,
             currentQuestionIndex: 0,
             shouldShowQuiz: true,
+        };
+    case QUIZ_SUBMIT_ANSWER:
+        return {
+            ...state,
+            currentQuestionIndex: state.currentQuestionIndex += 1,
+            answers: [...state.answers, action.answer],
         };
 
     default:
@@ -27,3 +42,4 @@ export default function quizReducer(state = { shouldShowQuiz: false }, action = 
 export const getShouldShowQuiz = state => deep(state, 'viewStates.Quiz.shouldShowQuiz') || false;
 
 export const getCurrentQuestionIndex = state => deep(state, 'viewStates.Quiz.currentQuestionIndex') || 0;
+export const getQuizAnswers = state => deep(state, 'viewStates.Quiz.answers') || [];
