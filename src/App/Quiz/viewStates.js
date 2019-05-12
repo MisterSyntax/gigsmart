@@ -6,6 +6,7 @@ import {
 } from '../../store/apiData/questions/actions';
 import {
     QUIZ_SUBMIT_ANSWER,
+    QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
 } from './actions';
 
 // Helpers
@@ -28,8 +29,12 @@ export default function quizReducer(state = defaultState, action = {}) {
     case QUIZ_SUBMIT_ANSWER:
         return {
             ...state,
-            currentQuestionIndex: state.currentQuestionIndex += 1,
             answers: [...state.answers, action.answer],
+        };
+    case QUIZ_UPDATE_CURRENT_QUESTION_INDEX:
+        return {
+            ...state,
+            currentQuestionIndex: action.questionIndex,
         };
 
     default:

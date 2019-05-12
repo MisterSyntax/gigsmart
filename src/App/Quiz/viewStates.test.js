@@ -8,6 +8,7 @@ import {
 } from '../../store/apiData/questions/actions';
 import {
     QUIZ_SUBMIT_ANSWER,
+    QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
 } from './actions';
 
 // Reducer Tests
@@ -54,6 +55,27 @@ describe('MyComponent ViewStates', () => {
 
         expect(quizReducer({}, {}))
             .toMatchObject({});
+    });
+    it('QUIZ_UPDATE_CURRENT_QUESTION_INDEX adds the current', () => {
+        const action = {
+            type: QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
+            questionIndex: 2,
+        };
+
+        expect(quizReducer(undefined, action))
+            .toMatchObject({
+                currentQuestionIndex: 2,
+            });
+
+        expect(quizReducer({ currentQuestionIndex: 1 }, action))
+            .toMatchObject({
+                currentQuestionIndex: 2,
+            });
+
+        expect(quizReducer(undefined, {}))
+            .toMatchObject({
+                currentQuestionIndex: 0,
+            });
     });
 });
 
