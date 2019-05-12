@@ -8,6 +8,7 @@ import styles from './Quiz.module.css';
 import Category from './Category/Category';
 import Question from './Question/Question';
 import QuestionCount from './QuestionCount/QuestionCount';
+import TrueFalseContainer from './Answers/TrueFalseContainer/TrueFalseContainer';
 // -- actions -- //
 
 // -- selectors -- //
@@ -25,6 +26,7 @@ export const Quiz = ({
             <Category />
             <Question />
             <QuestionCount />
+            <TrueFalseContainer />
         </div>
     );
 };
