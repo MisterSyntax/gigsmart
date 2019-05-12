@@ -17,7 +17,7 @@ export const QuestionCount = ({
     totalQuestions,
 }) => (
     <div className={styles['question-count']}>
-        {currentQuestionIndex} of {totalQuestions}
+        {currentQuestionIndex + 1} of {totalQuestions}
     </div>
 );
 
