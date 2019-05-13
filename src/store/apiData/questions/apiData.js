@@ -53,9 +53,9 @@ export const getTotalQuestions = state => getAllQuestionsData(state).length;
 // Selector for questions at index
 export const getQuestionData = (state, index) => getAllQuestionsData(state)[index] || {};
 export const getQuestionCategory = (state, index) => getQuestionData(state, index).category || '';
-export const getQuestionText = createSelector(
+export const getQuestionTextForIndex = createSelector(
     (state, index) => getQuestionData(state, index).question || '',
-    questionText => decodeURI(questionText),
+    questionText => (questionText ? decodeURI(questionText) : ''),
 );
 export const getQuestionAnswer = (state, index) => getQuestionData(state, index).correct_answer || '';
 
@@ -67,7 +67,7 @@ export const getCurrentQuestionCategory = state => (
     getQuestionData(state, getCurrentQuestionIndex(state)).category || ''
 );
 export const getCurrentQuestionText = state => (
-    getQuestionData(state, getCurrentQuestionIndex(state)).question || ''
+    getQuestionTextForIndex(state, getCurrentQuestionIndex(state))
 );
 export const getCurrentQuestionAnswer = state => (
     getQuestionData(state, getCurrentQuestionIndex(state)).correct_answer || ''
