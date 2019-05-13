@@ -1,35 +1,37 @@
 import quizReducer, {
     getCurrentQuestionIndex,
     getQuizAnswers,
-    getShouldShowQuiz,
+    getHasCompletedQuiz,
+    getHasStartedQuiz,
 } from './viewStates';
 import {
     QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
 import {
     QUIZ_SUBMIT_ANSWER,
+    QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
 } from './actions';
 
 // Reducer Tests
 describe('MyComponent ViewStates', () => {
-    it('Initializes to shouldShowQuizowHome: false', () => {
+    it('Initializes to hasStartedQuizowHome: false', () => {
         expect(quizReducer())
             .toMatchObject({
-                shouldShowQuiz: false,
+                hasStartedQuiz: false,
             });
-        expect(quizReducer({ shouldShowQuiz: true }, {}))
+        expect(quizReducer({ hasStartedQuiz: true }, {}))
             .toMatchObject({
-                shouldShowQuiz: true,
+                hasStartedQuiz: true,
             });
     });
-    it('QUESTIONS_LOAD_SUCCESS sets shouldShowQuiz to true', () => {
+    it('QUESTIONS_LOAD_SUCCESS sets hasStartedQuiz to true', () => {
         const action = {
             type: QUESTIONS_LOAD_SUCCESS,
         };
 
         expect(quizReducer({}, action))
             .toMatchObject({
-                shouldShowQuiz: true,
+                hasStartedQuiz: true,
                 currentQuestionIndex: 0,
             });
 
@@ -55,23 +57,55 @@ describe('MyComponent ViewStates', () => {
         expect(quizReducer({}, {}))
             .toMatchObject({});
     });
+    it('QUIZ_UPDATE_CURRENT_QUESTION_INDEX adds the current', () => {
+        const action = {
+            type: QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
+            questionIndex: 2,
+        };
+
+        expect(quizReducer(undefined, action))
+            .toMatchObject({
+                currentQuestionIndex: 2,
+            });
+
+        expect(quizReducer({ currentQuestionIndex: 1 }, action))
+            .toMatchObject({
+                currentQuestionIndex: 2,
+            });
+
+        expect(quizReducer(undefined, {}))
+            .toMatchObject({
+                currentQuestionIndex: 0,
+            });
+    });
 });
 
 // Selector Tests
 describe('Home selectors', () => {
-    it('getShouldShowQuiz gets the viewState for Quiz', () => {
+    it('getHasStartedQuiz gets the viewState for Quiz', () => {
         const state = {
+            apiData: {
+                questions: {
+                    data: [
+                        {},
+                        {},
+                        {},
+                    ],
+                },
+            },
             viewStates: {
                 Quiz: {
                     answers: 'answers',
                     currentQuestionIndex: 1,
-                    shouldShowQuiz: true,
+                    hasStartedQuiz: true,
                 },
             },
         };
 
-        expect(getShouldShowQuiz(state)).toEqual(true);
-        expect(getShouldShowQuiz({})).toEqual(false);
+        expect(getHasStartedQuiz(state)).toEqual(true);
+        expect(getHasStartedQuiz({})).toEqual(false);
+        expect(getHasCompletedQuiz(state)).toEqual(false);
+        expect(getHasCompletedQuiz({})).toEqual(true);
         expect(getCurrentQuestionIndex(state)).toEqual(1);
         expect(getCurrentQuestionIndex({})).toEqual(0);
         expect(getQuizAnswers(state)).toEqual('answers');

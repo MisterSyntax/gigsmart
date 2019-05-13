@@ -18,6 +18,7 @@ import { getCurrentQuestionIndex } from '../../../viewStates';
 export const TrueButton = ({
     currentQuestionIndex,
     submitQuizAnswer,
+    updateCurrentQuestionIndex,
 }) => (
     <button
         className={styles['true-button']}
@@ -34,6 +35,7 @@ export const TrueButton = ({
 TrueButton.propTypes = {
     currentQuestionIndex: PropTypes.number,
     submitQuizAnswer: PropTypes.func,
+    updateCurrentQuestionIndex: PropTypes.func,
 };
 
 TrueButton.defaultProps = {
@@ -47,6 +49,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     submitQuizAnswer,
+    updateCurrentQuestionIndex,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrueButton);

@@ -12,12 +12,16 @@ import TrueFalseContainer from './Answers/TrueFalseContainer/TrueFalseContainer'
 // -- actions -- //
 
 // -- selectors -- //
-import { getShouldShowQuiz } from './viewStates';
+import {
+    getHasStartedQuiz,
+    getHasCompletedQuiz,
+} from './viewStates';
 
 export const Quiz = ({
-    shouldShowQuiz,
+    hasCompletedQuiz,
+    hasStartedQuiz,
 }) => {
-    if (!shouldShowQuiz) {
+    if (!hasStartedQuiz || hasCompletedQuiz) {
         return null;
     }
 
@@ -32,7 +36,8 @@ export const Quiz = ({
 };
 
 Quiz.propTypes = {
-    shouldShowQuiz: PropTypes.bool,
+    hasCompletedQuiz: PropTypes.bool,
+    hasStartedQuiz: PropTypes.bool,
 };
 
 Quiz.defaultProps = {
@@ -41,7 +46,8 @@ Quiz.defaultProps = {
 
 /* istanbul ignore next */
 const mapStateToProps = state => ({
-    shouldShowQuiz: getShouldShowQuiz(state),
+    hasCompletedQuiz: getHasCompletedQuiz(state),
+    hasStartedQuiz: getHasStartedQuiz(state),
 });
 
 const mapDispatchToProps = {

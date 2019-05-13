@@ -18,6 +18,7 @@ import { getCurrentQuestionIndex } from '../../../viewStates';
 export const FalseButton = ({
     currentQuestionIndex,
     submitQuizAnswer,
+    updateCurrentQuestionIndex,
 }) => (
     <button
         className={styles['false-button']}
@@ -34,6 +35,7 @@ export const FalseButton = ({
 FalseButton.propTypes = {
     currentQuestionIndex: PropTypes.number,
     submitQuizAnswer: PropTypes.func,
+    updateCurrentQuestionIndex: PropTypes.func,
 };
 
 FalseButton.defaultProps = {
@@ -47,6 +49,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     submitQuizAnswer,
+    updateCurrentQuestionIndex,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FalseButton);
