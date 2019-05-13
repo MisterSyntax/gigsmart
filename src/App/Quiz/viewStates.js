@@ -1,6 +1,8 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 import deep from 'deep-get-set';
-// import { getViewStates } from '../viewStates'; // TODO: Update this path!
+import {
+    getTotalQuestions,
+} from '../../store/apiData/questions/apiData';
 import {
     QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
@@ -15,7 +17,7 @@ import {
 const defaultState = {
     answers: [],
     currentQuestionIndex: 0,
-    shouldShowQuiz: false,
+    hasStartedQuiz: false,
 };
 
 export default function quizReducer(state = defaultState, action = {}) {
@@ -24,7 +26,7 @@ export default function quizReducer(state = defaultState, action = {}) {
         return {
             ...state,
             currentQuestionIndex: 0,
-            shouldShowQuiz: true,
+            hasStartedQuiz: true,
         };
     case QUIZ_SUBMIT_ANSWER:
         return {
@@ -44,7 +46,12 @@ export default function quizReducer(state = defaultState, action = {}) {
 
 
 // Selectors
-export const getShouldShowQuiz = state => deep(state, 'viewStates.Quiz.shouldShowQuiz') || false;
-
+export const getHasStartedQuiz = state => deep(state, 'viewStates.Quiz.hasStartedQuiz') || false;
 export const getCurrentQuestionIndex = state => deep(state, 'viewStates.Quiz.currentQuestionIndex') || 0;
 export const getQuizAnswers = state => deep(state, 'viewStates.Quiz.answers') || [];
+
+export const getHasCompletedQuiz = createSelector(
+    state => getCurrentQuestionIndex(state),
+    state => getTotalQuestions(state),
+    (currentQuestionIndex, totalQuestions) => (currentQuestionIndex >= totalQuestions),
+);
