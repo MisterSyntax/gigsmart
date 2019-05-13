@@ -24,7 +24,7 @@ export const TrueButton = ({
         className={styles['true-button']}
         onClick={() => {
             updateCurrentQuestionIndex(currentQuestionIndex + 1);
-            submitQuizAnswer(true);
+            submitQuizAnswer('True');
         }}
         type="button"
     >
