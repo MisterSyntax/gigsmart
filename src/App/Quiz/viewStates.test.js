@@ -1,6 +1,7 @@
 import quizReducer, {
     getCurrentQuestionIndex,
     getQuizAnswers,
+    getQuizAnswerForIndex,
     getHasCompletedQuiz,
     getHasStartedQuiz,
 } from './viewStates';
@@ -110,5 +111,21 @@ describe('Home selectors', () => {
         expect(getCurrentQuestionIndex({})).toEqual(0);
         expect(getQuizAnswers(state)).toEqual('answers');
         expect(getQuizAnswers({})).toEqual([]);
+    });
+});
+
+describe('getQuizAnswerForIndex', () => {
+    it('gets the answer for index', () => {
+        const state = {
+            viewStates: {
+                Quiz: {
+                    answers: ['True0', 'True1', 'True2'],
+                },
+            },
+        };
+        expect(getQuizAnswerForIndex(state, 0)).toEqual('True0');
+        expect(getQuizAnswerForIndex(state, 2)).toEqual('True2');
+        expect(getQuizAnswerForIndex({}, 2)).toEqual('');
+        expect(getQuizAnswerForIndex(state, 3)).toEqual('');
     });
 });

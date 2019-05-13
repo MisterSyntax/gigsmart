@@ -49,6 +49,7 @@ export default function quizReducer(state = defaultState, action = {}) {
 export const getHasStartedQuiz = state => deep(state, 'viewStates.Quiz.hasStartedQuiz') || false;
 export const getCurrentQuestionIndex = state => deep(state, 'viewStates.Quiz.currentQuestionIndex') || 0;
 export const getQuizAnswers = state => deep(state, 'viewStates.Quiz.answers') || [];
+export const getQuizAnswerForIndex = (state, index) => deep(state, `viewStates.Quiz.answers.${index}`) || '';
 
 export const getHasCompletedQuiz = createSelector(
     state => getCurrentQuestionIndex(state),
