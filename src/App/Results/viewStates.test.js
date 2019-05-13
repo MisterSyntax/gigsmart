@@ -1,46 +1,70 @@
 import {
-    getMyComponentThing,
-    getMyComponentViewState,
-}, myComponentReducer from './viewStates';
-import {
-    MY_EVENT_NAME
-} from './actions';
+    getDidAnswerCorrectlyForIndex,
+    getScore,
+} from './viewStates';
 
 // Reducer Tests
-describe('MyComponent ViewStates', () => {
-    it('MY_EVENT_NAME sets thing to true', () => {
-        const action = {
-            type: MY_EVENT_NAME
-        };
-
-        expect(myComponentReducer({}, action))
-            .toMatchObject({
-                thing: true
-        });
-    });
-});
+// describe('MyComponent ViewStates', () => {
+//     it('MY_EVENT_NAME sets thing to true', () => {
+//         const action = {
+//             type: MY_EVENT_NAME
+//         };
+//
+//         expect(myComponentReducer({}, action))
+//             .toMatchObject({
+//                 thing: true
+//         });
+//     });
+// });
 
 // Selector Tests
 describe('MyComponent selectors', () => {
-    it('getMyComponentViewState gets the viewState for myComponent', () => {
+    it('getScore gets the score of the test', () => {
         const state = {
+            apiData: {
+                questions: {
+                    data: [
+                        { correct_answer: 'True' },
+                        { correct_answer: 'True' },
+                        { correct_answer: 'True' },
+                    ],
+                },
+            },
             viewStates: {
-                myComponent: 'anObject'
-            }
+                Quiz: {
+                    answers: ['True', 'False', 'True'],
+                    currentQuestionIndex: 1,
+                    hasStartedQuiz: true,
+                },
+            },
         };
 
-        expect(getMyComponentViewState(state)).toEqual('anObject');
+        expect(getScore(state)).toEqual(2);
     });
+});
 
-    it('getMyComponentThing gets the thing for myComponent', () => {
+describe('getDidAnswerCorrectlyForIndex', () => {
+    it('returns true/false depending if the user answered that question correctly', () => {
         const state = {
+            apiData: {
+                questions: {
+                    data: [
+                        { correct_answer: 'True' },
+                        { correct_answer: 'True' },
+                        { correct_answer: 'True' },
+                    ],
+                },
+            },
             viewStates: {
-                myComponent: {
-                    thing: true
-                }
-            }
+                Quiz: {
+                    answers: ['True', 'False', 'True'],
+                    currentQuestionIndex: 1,
+                    hasStartedQuiz: true,
+                },
+            },
         };
-
-        expect(getMyComponentThing(state)).toEqual(true);
+        expect(getDidAnswerCorrectlyForIndex(state, 0)).toEqual(true);
+        expect(getDidAnswerCorrectlyForIndex(state, 1)).toEqual(false);
+        expect(getDidAnswerCorrectlyForIndex({}, 0)).toEqual(false);
     });
 });
