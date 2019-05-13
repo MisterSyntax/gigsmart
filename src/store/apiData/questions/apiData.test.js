@@ -7,7 +7,7 @@ import questionsReducer, {
     getQuestionAnswer,
     getQuestionCategory,
     getQuestionData,
-    getQuestionText,
+    getQuestionTextForIndex,
     getTotalQuestions,
 } from './apiData';
 import {
@@ -53,7 +53,7 @@ describe('Api Data', () => {
 
 export const getQuestionData = (state, index) => getAllQuestionsData(state)[index] || {};
 export const getQuestionCategory = (state, index) => getQuestionData(state, index).category;
-export const getQuestionText = (state, index) => getQuestionText(state, index).question;
+export const getQuestionTextForIndex = (state, index) => getQuestionTextForIndex(state, index).question;
 export const getQuestionAnswer = (state, index) => getQuestionAnswer(state, index).correct_answer;
 
 */
@@ -117,9 +117,9 @@ describe('question api data selectors', () => {
         expect(getQuestionCategory(state, 2)).toEqual('cat');
         expect(getQuestionCategory({})).toEqual('');
     });
-    it('getQuestionText gets the text for the question at index i', () => {
-        expect(getQuestionText(state, 2)).toEqual('quex');
-        expect(getQuestionText({}, 2)).toEqual('');
+    it('getQuestionTextForIndex gets the text for the question at index i', () => {
+        expect(getQuestionTextForIndex(state, 2)).toEqual('quex');
+        expect(getQuestionTextForIndex({}, 2)).toEqual('');
     });
 });
 

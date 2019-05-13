@@ -24,7 +24,7 @@ export const FalseButton = ({
         className={styles['false-button']}
         onClick={() => {
             updateCurrentQuestionIndex(currentQuestionIndex + 1);
-            submitQuizAnswer(false);
+            submitQuizAnswer('False');
         }}
         type="button"
     >
