@@ -10,6 +10,9 @@ import {
     QUIZ_SUBMIT_ANSWER,
     QUIZ_UPDATE_CURRENT_QUESTION_INDEX,
 } from './actions';
+import {
+    RESTART_QUIZ,
+} from '../Results/actions';
 
 // Helpers
 
@@ -22,6 +25,8 @@ const defaultState = {
 
 export default function quizReducer(state = defaultState, action = {}) {
     switch (action.type) {
+    case RESTART_QUIZ:
+        return defaultState;
     case QUESTIONS_LOAD_SUCCESS:
         return {
             ...state,
@@ -54,5 +59,9 @@ export const getQuizAnswerForIndex = (state, index) => deep(state, `viewStates.Q
 export const getHasCompletedQuiz = createSelector(
     state => getCurrentQuestionIndex(state),
     state => getTotalQuestions(state),
-    (currentQuestionIndex, totalQuestions) => (currentQuestionIndex >= totalQuestions),
+    state => getHasStartedQuiz(state),
+    (currentQuestionIndex, totalQuestions, hasStartedQuiz) => (
+        hasStartedQuiz
+        && currentQuestionIndex >= totalQuestions
+    ),
 );
