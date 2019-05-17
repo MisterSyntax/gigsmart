@@ -4,12 +4,18 @@ import deep from 'deep-get-set';
 import {
     QUESTIONS_LOAD_SUCCESS,
 } from '../../store/apiData/questions/actions';
+import {
+    RESTART_QUIZ,
+} from '../Results/actions';
 
 // Helpers
 
 // Reducers
-export default function homeReducer(state = { shouldShowHome: true }, action = {}) {
+const defaultState = { shouldShowHome: true };
+export default function homeReducer(state = defaultState, action = {}) {
     switch (action.type) {
+    case RESTART_QUIZ:
+        return defaultState;
     case QUESTIONS_LOAD_SUCCESS:
         return {
             ...state,
