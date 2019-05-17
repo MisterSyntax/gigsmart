@@ -1,0 +1,4 @@
+.true-false-container {
+    display: flex;
+    justify-content: space-around;
+}
