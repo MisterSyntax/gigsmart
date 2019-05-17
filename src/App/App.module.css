@@ -1,3 +1,23 @@
+:global body {
+    margin: 0;
+    font-size: var(--medium-font-size);
+    font-family: var(--base-font-family);
+}
+
+:global button {
+    background-color: var(--base-white);
+    border: 1px solid var(--border-grey);
+    border-radius: 3px;
+    font-size: var(--medium-font-size);
+    font-weight: 600;
+    padding: 16px;
+    width: 160px;
+}
+
+:global h1 {
+    margin: 0;
+}
+
 .app-container {
-    background-color: var(--main-bg-color);
+    background-color: var(--base-white);
 }
