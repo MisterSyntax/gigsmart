@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styles from './Results.module.css';
 
 // -- components -- //
+import AnswerList from './AnswerList/AnswerList';
 import Score from './Score/Score';
 
 // -- actions -- //
@@ -20,6 +21,7 @@ export const Results = ({
     }
     return (
         <section className={styles['results-container']}>
+            <AnswerList />
             <Score />
         </section>
     );
