@@ -10,19 +10,22 @@ import styles from './Score.module.css';
 
 // -- selectors -- //
 import { getScore } from '../viewStates';
+import { getQuestionsApiSettingsAmount } from '../../../store/config/selectors/questionApi/config';
 
 export const Score = ({
     score,
+    totalQuestions,
 }) => {
     return (
-        <div className={styles.score}>
-            {score}
-        </div>
+        <h1 className={styles.score}>
+            Score: {score} of {totalQuestions}
+        </h1>
     );
 };
 
 Score.propTypes = {
     score: PropTypes.number,
+    totalQuestions: PropTypes.number,
 };
 
 Score.defaultProps = {
@@ -32,6 +35,7 @@ Score.defaultProps = {
 /* istanbul ignore next */
 const mapStateToProps = state => ({
     score: getScore(state),
+    totalQuestions: getQuestionsApiSettingsAmount(state),
 });
 
 const mapDispatchToProps = {
