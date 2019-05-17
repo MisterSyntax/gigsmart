@@ -1,0 +1,15 @@
+.correct-answer-label {
+    color: var(--correct-green);
+    font-size: var(--large-font-size);
+    font-weight: 900;
+}
+.incorrect-answer-label {
+    color: var(--wrong-red);
+    font-size: var(--large-font-size);
+    font-weight: 900;
+}
+
+.incorrect-answer-container,
+.correct-answer-container {
+    margin: 16px 0;
+}

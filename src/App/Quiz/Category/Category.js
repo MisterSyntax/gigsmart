@@ -15,7 +15,7 @@ export const Category = ({
     category,
 }) => (
     <h1 className={styles['question-category']}>
-        {category}
+        Category: {category}
     </h1>
 );
 

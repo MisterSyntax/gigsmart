@@ -21,10 +21,10 @@ export const Home = ({
     }
 
     return (
-        <section className={styles.home}>
+        <div className={styles.home}>
             <WelcomeText />
             <BeginButton />
-        </section>
+        </div>
     );
 };
 

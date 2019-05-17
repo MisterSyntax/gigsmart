@@ -19,13 +19,13 @@ export const Answer = ({
     if (!didAnswerCorrectly) {
         return (
             <div className={styles['incorrect-answer-container']}>
-                {questionText}
+                <span className={styles['incorrect-answer-label']}>Wrong:</span> {questionText}
             </div>
         );
     }
     return (
         <div className={styles['correct-answer-container']}>
-            {questionText}
+            <span className={styles['correct-answer-label']}>Correct:</span> {questionText}
         </div>
     );
 };

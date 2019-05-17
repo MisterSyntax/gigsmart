@@ -29,8 +29,10 @@ export const Quiz = ({
         <div className={styles.quiz}>
             <Category />
             <Question />
-            <QuestionCount />
-            <TrueFalseContainer />
+            <div className={styles['button-count-container']}>
+                <TrueFalseContainer />
+                <QuestionCount />
+            </div>
         </div>
     );
 };
