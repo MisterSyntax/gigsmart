@@ -105,12 +105,57 @@ describe('Home selectors', () => {
 
         expect(getHasStartedQuiz(state)).toEqual(true);
         expect(getHasStartedQuiz({})).toEqual(false);
-        expect(getHasCompletedQuiz(state)).toEqual(false);
-        expect(getHasCompletedQuiz({})).toEqual(true);
         expect(getCurrentQuestionIndex(state)).toEqual(1);
         expect(getCurrentQuestionIndex({})).toEqual(0);
         expect(getQuizAnswers(state)).toEqual('answers');
         expect(getQuizAnswers({})).toEqual([]);
+    });
+});
+
+describe('getHasCompletedQuiz', () => {
+    it('gets wether the quiz has not been completed', () => {
+        const state = {
+            apiData: {
+                questions: {
+                    data: [
+                        {},
+                        {},
+                        {},
+                    ],
+                },
+            },
+            viewStates: {
+                Quiz: {
+                    answers: 'answers',
+                    currentQuestionIndex: 1,
+                    hasStartedQuiz: true,
+                },
+            },
+        };
+        expect(getHasCompletedQuiz(state)).toEqual(false);
+        expect(getHasCompletedQuiz({})).toEqual(false);
+    });
+
+    it('gets wether the quiz has been completed', () => {
+        const state = {
+            apiData: {
+                questions: {
+                    data: [
+                        {},
+                        {},
+                        {},
+                    ],
+                },
+            },
+            viewStates: {
+                Quiz: {
+                    answers: 'answers',
+                    currentQuestionIndex: 3,
+                    hasStartedQuiz: true,
+                },
+            },
+        };
+        expect(getHasCompletedQuiz(state)).toEqual(true);
     });
 });
 
