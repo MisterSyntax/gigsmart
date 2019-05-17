@@ -7,6 +7,7 @@ import styles from './Results.module.css';
 // -- components -- //
 import AnswerList from './AnswerList/AnswerList';
 import Score from './Score/Score';
+import PlayAgainButton from './PlayAgainButton/PlayAgainButton';
 
 // -- actions -- //
 
@@ -19,11 +20,13 @@ export const Results = ({
     if (!hasCompletedQuiz) {
         return null;
     }
+
     return (
-        <section className={styles['results-container']}>
-            <AnswerList />
+        <div className={styles.results}>
             <Score />
-        </section>
+            <AnswerList />
+            <PlayAgainButton />
+        </div>
     );
 };
 
