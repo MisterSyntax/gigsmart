@@ -49,14 +49,6 @@ describe('Api Data', () => {
     });
 });
 
-/*
-
-export const getQuestionData = (state, index) => getAllQuestionsData(state)[index] || {};
-export const getQuestionCategory = (state, index) => getQuestionData(state, index).category;
-export const getQuestionTextForIndex = (state, index) => getQuestionTextForIndex(state, index).question;
-export const getQuestionAnswer = (state, index) => getQuestionAnswer(state, index).correct_answer;
-
-*/
 describe('question api data selectors', () => {
     it('getAllQuestionsData - gets the data for all questions', () => {
         const rootState = {
